@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+#import numpy as np
 import matplotlib.pyplot as plt
 # import the  dataset
 dataset = pd.read_csv('Social_Network_Ads.csv')
@@ -29,10 +29,37 @@ y_pred=classifier.predict(X_test)
 from sklearn.metrics import confusion_matrix
 cm=confusion_matrix(y_test,y_pred)
 print(cm)
-
-
-
 print(classifier.score(X_train,y_train))
+#display the conufsion matrix
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.imshow(cm)
+ax.grid(False)
+ax.xaxis.set(ticks=(0, 1), ticklabels=('Predicted 0s', 'Predicted 1s'))
+ax.yaxis.set(ticks=(0, 1), ticklabels=('Actual 0s', 'Actual 1s'))
+ax.set_ylim(1.5, -0.5)
+for i in range(2):
+    for j in range(2):
+        ax.text(j, i, cm[i, j], ha='center', va='center', color='red')
+plt.show()
+
+from sklearn.metrics import classification_report
+target_names = ['Not purchased', 'purchased']
+print(classification_report(y_test, y_pred, target_names=target_names))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 '''
 # Visualising the Training set results
 from matplotlib.colors import ListedColormap
